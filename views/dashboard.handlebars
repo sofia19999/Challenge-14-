@@ -1,0 +1,38 @@
+<h1>Your Dashboard</h1>
+
+<a href="/">Home</a>
+<a href="/logout">Logout</a>
+
+<h2>Your Blog Posts</h2>
+
+{{#if posts.length}}
+  {{#each posts}}
+    <div>
+      <h3>{{title}}</h3>
+      <p>{{content}}</p>
+      <small>Posted on {{createdAt}}</small>
+      <form action="/api/posts/{{id}}" method="POST" class="edit-post-form">
+        <input type="hidden" name="_method" value="PUT">
+        <textarea name="content">{{content}}</textarea>
+        <button type="submit">Edit</button>
+      </form>
+      <form action="/api/posts/{{id}}" method="POST" class="delete-post-form">
+        <input type="hidden" name="_method" value="DELETE">
+        <button type="submit">Delete</button>
+      </form>
+    </div>
+  {{/each}}
+{{else}}
+  <p>You haven't created any blog posts yet.</p>
+{{/if}}
+
+<h2>Create a New Blog Post</h2>
+<form action="/api/posts" method="POST">
+  <label for="title">Title:</label>
+  <input type="text" id="title" name="title" required>
+  
+  <label for="content">Content:</label>
+  <textarea id="content" name="content" required></textarea>
+  
+  <button type="submit">Create</button>
+</form>

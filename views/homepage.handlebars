@@ -1,0 +1,17 @@
+<h1>Tech Blog</h1>
+
+{{#if logged_in}}
+  <a href="/dashboard">Dashboard</a>
+  <a href="/logout">Logout</a>
+{{else}}
+  <a href="/login">Login</a>
+  <a href="/signup">Signup</a>
+{{/if}}
+
+{{#each posts}}
+  <div>
+    <h2><a href="/post/{{id}}">{{title}}</a></h2>
+    <p>{{content}}</p>
+    <small>Posted by {{user.username}} on {{createdAt}}</small>
+  </div>
+{{/each}}
